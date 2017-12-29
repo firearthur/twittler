@@ -84,6 +84,37 @@ p {
   margin-bottom: 0;
 }
 
+#tweets-update {
+  text-align: right;
+  padding-right: 50px;
+  margin-top: 10px;
+}
+
+#manual-update-button {
+  background-color: #4CAF50;
+}
+#start-autoupdate-button {
+  background-color: #008CBA;
+}
+#stop-autoupdate-button {
+  background-color: #555;
+}
+
+.update-button {
+  color: white;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 8px;
+  display: inline-block;
+}
+.update-button:hover{
+  cursor: pointer;
+}
+
 .tweet {
   margin: 10px;
   padding: 5px 10px;
@@ -91,7 +122,7 @@ p {
   border-radius: 4px;
 }
 
-.username, username:hover, username:visited{
+.username, username:hover, username:visited {
   color:#2d9caf;
 }
 .timestamp {
