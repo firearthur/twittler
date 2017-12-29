@@ -7,35 +7,11 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <script>
-      $(document).ready(function(){
-        // var $body = $('body');
-        // $body.html('');
-        var $section = $('section');
-
-        var index = streams.home.length - 1;
-
-        while(index >= 0){
-          var $article = $('<article class = "tweet"></article>');
-          var tweet = streams.home[index];
-          var username = tweet.user;
-          var timestamp = tweet.created_at.toLocaleString();
-          var $timestamp = $('<small class="timestamp">Posted on: ' + timestamp +'</small>');
-          var $tweet = $('<p><a href = "#" class = "username" data-username = "'+ username + '">@'+ username +'</a>: ' + tweet.message + '</p>');
-          $tweet.appendTo($article);
-          $tweet.after($timestamp);
-          $article.appendTo($section);
-          index -= 1;
-        }
-      });
-    </script>
     <header>
       <h1 id = "twittler">Twittler</h1>
     </header>
+    <section id="home-tweets"></section>
 
-    <section id="home-tweets">
-
-    </section>
     <script src="app.js" charset="utf-8"></script>
   </body>
 </html>
