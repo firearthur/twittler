@@ -1,5 +1,6 @@
 $(document).ready(function() {
     // var refresher = setInterval(update_content, 3000);
+
 })
 
 function update_content(){

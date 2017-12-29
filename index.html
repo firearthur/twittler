@@ -3,26 +3,39 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Alegreya:700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <script>
-
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        // var $body = $('body');
+        // $body.html('');
+        var $section = $('section');
 
         var index = streams.home.length - 1;
+
         while(index >= 0){
+          var $article = $('<article class = "tweet"></article>');
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          var username = tweet.user;
+          var timestamp = tweet.created_at.toLocaleString();
+          var $timestamp = $('<small class="timestamp">Posted on: ' + timestamp +'</small>');
+          var $tweet = $('<p><a href = "#" class = "username" data-username = "'+ username + '">@'+ username +'</a>: ' + tweet.message + '</p>');
+          $tweet.appendTo($article);
+          $tweet.after($timestamp);
+          $article.appendTo($section);
           index -= 1;
         }
-
       });
-
     </script>
+    <header>
+      <h1 id = "twittler">Twittler</h1>
+    </header>
+
+    <section id="home-tweets">
+
+    </section>
     <script src="app.js" charset="utf-8"></script>
   </body>
 </html>
