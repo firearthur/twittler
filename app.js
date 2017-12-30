@@ -1,10 +1,25 @@
 $(document).ready(function() {
 
   var tweetsUpdateNav = $('#tweets-update');
+
   var renderTweetsInterval;
 
-  tweetsUpdateNav.on('click', function(event){
-    // event.stopPropagation();
+  tweetsUpdateNav.on('click', updateButtonsHandler);
+
+  renderTweets();
+  
+  var $section = $('#home-tweets');
+  $section.on('click','a',function(event){
+    console.log('User was clicked');
+    event.preventDefault();
+    var clickedUser = $(this).data('username');
+    renderTweets(clickedUser);
+  });
+
+
+
+//********************functions***************************************//
+  function updateButtonsHandler(event){
     if(event.target.name === 'update'){
       clearInterval(renderTweetsInterval);
       renderTweets();
@@ -19,30 +34,20 @@ $(document).ready(function() {
       console.log('stopped autoupdate');
 
     }
-  });
+  }
 
-
-
-
-
-  // var renderTweetsInterval = setInterval(renderTweets, 10000);
-   renderTweets();
-  //  setTimeout(renderTweets, 3000);
-  //  setTimeout(renderTweets, 3000);
-
-
-
-
-
-  function renderTweets(){
+  function renderTweets(username){
+    // debugger;
     console.log('updated');
     var $section = $('section');
     $section.html('');
-    var index = streams.home.length - 1;
+    var tweetsToRender = streams.users[username] || streams.home;
+
+    var index = tweetsToRender.length - 1;
 
     while(index >= 0){
       var $article = $('<article class = "tweet"></article>');
-      var tweet = streams.home[index];
+      var tweet = tweetsToRender[index];
       var username = tweet.user;
       var timestamp = tweet.created_at.toLocaleString();
       var $timestamp = $('<small class="timestamp">Posted on: ' + timestamp +'</small>');
@@ -53,4 +58,5 @@ $(document).ready(function() {
       index -= 1;
     }
   }
+
 });
