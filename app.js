@@ -6,9 +6,11 @@ $(document).ready(function() {
 
   tweetsUpdateNav.on('click', updateButtonsHandler);
 
-  renderTweets();
+  renderTweets(); //rendering the tweets to initialize the app
 
-  var $section = $('#home-tweets');
+
+  //Handling clicks on usernames
+  var $section = $('section.home-tweets');
   $section.on('click','a',function(event){
     event.preventDefault();
     var clickedUser = $(this).data('username');
@@ -16,6 +18,26 @@ $(document).ready(function() {
   });
 
 
+  //Handling user input
+  var $form = $('#tweet-form');
+  var $tweetInput = $form.find('#tweet-input');
+  var $usernameInput = $form.find('#username-input');
+  var tweetText;
+  var username;
+
+  $form.on('keypress', 'input',(event)=>{
+    if(event.which === 13){
+      event.preventDefault();
+      console.log($tweetInput.val());
+      tweetText = $tweetInput.val();
+      username = $usernameInput.val();
+      $tweetInput.val('');
+      $usernameInput.val('');
+      writeTweet(tweetText, username);
+      renderTweets();
+    }
+
+  });
 
 //********************functions***************************************//
   function updateButtonsHandler(event){
@@ -44,13 +66,14 @@ $(document).ready(function() {
       var tweet = tweetsToRender[index];
       var username = tweet.user;
       var timestamp = tweet.created_at.toLocaleString();
-      var $timestamp = $('<small class="timestamp">Posted on: ' + timestamp +'</small>');
+      var $timestamp = $('<time class = "timeago" datetime = "'+ timestamp + '">' + timestamp +'</time>');
       var $tweet = $('<p><a href = "#" class = "username" data-username = "'+ username + '">@'+ username +'</a>: ' + tweet.message + '</p>');
       $tweet.appendTo($article);
       $tweet.after($timestamp);
       $article.appendTo($section);
       index -= 1;
     }
+    $("time.timeago").timeago();
   }
 
 });

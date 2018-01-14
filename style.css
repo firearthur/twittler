@@ -67,13 +67,11 @@ p {
   margin-top: 5px;
 }
 
-#home-tweets {
-  max-width: 70%;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 20px;
-  background-color: white;
+/* form {
+	text-align: center;
 }
+ */
+
 #twittler {
   font-size: 96px;
   font-weight: bold;
@@ -98,6 +96,37 @@ p {
 }
 #stop-autoupdate-button {
   background-color: #555;
+}
+
+#username-input {
+	width: 12%;
+}
+#tweet-input {
+	width: 80%;
+  margin-left: 25px;
+}
+
+.tweet-inputfield {
+	padding-left: 3px;
+	padding-right: 3px;
+	font-size: 16px;
+	line-height: 35px;
+	border-top: 0;
+	border-right: 0;
+	border-left: 0;
+	border-bottom: 1px solid #999;
+}
+
+.tweet-inputfield::placeholder{
+	text-align: center;
+}
+
+.home-tweets {
+  max-width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px;
+  background-color: white;
 }
 
 .update-button {
@@ -125,7 +154,7 @@ p {
 .username, username:hover, username:visited {
   color:#2d9caf;
 }
-.timestamp {
+.timeago {
   color: #999;
   font-style: italic;
   font-size: 12px;
